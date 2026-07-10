@@ -1,59 +1,174 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center">
+  <img src="docs/banners/bookingflow-banner.png" width="1000">
+</p>
+# 🚍 BookingFlow Travel Platform
+
+A modern travel booking platform built with Laravel 12 featuring Role-Based Access Control (RBAC), AdminLTE dashboard, and a scalable architecture for travel agencies and booking businesses.
+
+---
+
+## ✨ Features
+
+### 🔐 Authentication
+- Secure Login & Logout
+- Profile Management
+- Password Reset
+
+### 👥 User Management
+- Create, Edit & Delete Users
+- Active / Inactive Status
+- Search & Pagination
+- Role Assignment
+
+### 🛡 Role Management
+- Complete CRUD
+- Assign Multiple Permissions
+- Protected System Roles
+
+### 🔑 Permission Management
+- View Permissions
+- Search Permissions
+- Role Mapping
+
+### 🔒 Role-Based Access Control (RBAC)
+- Spatie Laravel Permission
+- Route Protection
+- Dynamic Sidebar
+- Permission Based UI
+- Super Admin Access
+
+### 🎨 Admin Dashboard
+- AdminLTE UI
+- Responsive Layout
+- Bootstrap 5
+
+# 🏗️ System Architecture
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="docs/architecture/bookingflow-architecture.png" width="850">
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# 📸 Screenshots
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Dashboard
 
-## Learning Laravel
+![Dashboard](docs/screenshots/dashboard.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## User Management
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![Users](docs/screenshots/users.png)
 
-## Laravel Sponsors
+## Role Management
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+![Roles](docs/screenshots/roles.png)
+![Roles Edit](docs/screenshots/role-edit.png)
 
-### Premium Partners
+## Permission Management
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+![Permissions](docs/screenshots/permissions.png)
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 🚀 Tech Stack
 
-## Code of Conduct
+| Technology | Version |
+|------------|----------|
+| Laravel | 12 |
+| PHP | 8.x |
+| MySQL | 8 |
+| Bootstrap | 5 |
+| AdminLTE | 3 |
+| Spatie Permission | Latest |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+# 📂 Project Structure
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```text
+app/
+ ├── Http/
+ │    ├── Controllers/
+ │    └── Middleware/
+ │
+ ├── Models/
+ │
+resources/
+ ├── views/
+ │    ├── admin/
+ │    ├── users/
+ │    ├── roles/
+ │    └── permissions/
 
-## License
+routes/
+database/
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+# ⚙️ Installation
+
+```bash
+git clone https://github.com/vishnu91sikarwar/bookingflow-travel-platform.git
+
+cd bookingflow-travel-platform
+
+composer install
+
+cp .env.example .env
+
+php artisan key:generate
+
+php artisan migrate
+
+php artisan db:seed
+
+php artisan serve
+```
+
+
+# 🛣 Roadmap
+
+## ✅ Version 1.0
+- Authentication
+- Dashboard
+- User CRUD
+- Role CRUD
+- Permission Management
+- RBAC
+
+## 🚧 Version 1.1
+- Customer Management
+- Booking Management
+- Bus Management
+- Trip Scheduling
+
+## 🚧 Version 1.2
+- Payments
+- Reports
+- Notifications
+- Activity Logs
+
+## 🚧 Version 2.0
+- Multi Company Support
+- SaaS Version
+- API
+- Mobile App Integration
+
+---
+
+
+
+# 👨‍💻 Author
+
+**Vishnu Singh Sikarwar**
+
+Senior Laravel Full Stack Developer
+
+GitHub
+
+https://github.com/vishnu91sikarwar
+ 📧 Email: monu91sikarwar@gmail.com
