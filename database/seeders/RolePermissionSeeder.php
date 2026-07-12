@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
 class RolePermissionSeeder extends Seeder
@@ -17,20 +17,29 @@ class RolePermissionSeeder extends Seeder
 
             'dashboard.view',
 
+            // Users
             'users.view',
             'users.create',
             'users.edit',
             'users.delete',
 
+            // Roles
             'roles.view',
             'roles.create',
             'roles.edit',
             'roles.delete',
 
+            // Permissions
             'permissions.view',
             'permissions.create',
             'permissions.edit',
             'permissions.delete',
+
+            // Bus Operators
+            'bus-operators.view',
+            'bus-operators.create',
+            'bus-operators.edit',
+            'bus-operators.delete',
         ];
 
         foreach ($permissions as $permission) {

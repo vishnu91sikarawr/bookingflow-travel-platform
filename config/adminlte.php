@@ -1,5 +1,13 @@
 <?php
 
+use JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter;
+use JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter;
+use JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter;
+use JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter;
+use JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter;
+use JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter;
+use JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter;
+
 return [
 
     /*
@@ -300,7 +308,7 @@ return [
 
     'menu' => [
         // Navbar items:
-       
+
         [
             'type' => 'navbar-search',
             'text' => 'search',
@@ -312,37 +320,52 @@ return [
         ],
 
         // Sidebar items:
-            [
+        [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
-            [
+        [
             'text' => 'Dashboard',
-            'url'  => 'dashboard',
+            'url' => 'dashboard',
             'icon' => 'fas fa-fw fa-tachometer-alt',
-            ],
+        ],
 
-            [
+        [
+            'header' => 'Administration',
+        ],
+
+        [
             'text' => 'Users',
-            'url'  => 'users',
+            'url' => 'users',
             'icon' => 'fas fa-users',
-            ],
+            'can' => 'users.view',
+        ],
 
-            [
+        [
             'text' => 'Roles',
-            'url'  => 'roles',
+            'url' => 'roles',
             'icon' => 'fas fa-user-shield',
-            ],
+            'can' => 'roles.view',
+        ],
 
-            [
+        [
             'text' => 'Permissions',
-            'url'  => 'permissions',
+            'url' => 'permissions',
             'icon' => 'fas fa-key',
-            ],
+            'can' => 'permissions.view',
+        ],
 
-            
-        
-        
+        [
+            'header' => 'Travel Management',
+        ],
+
+        [
+            'text' => 'Bus Operators',
+            'url' => 'bus-operators',
+            'icon' => 'fas fa-bus',
+            'can' => 'bus-operators.view',
+        ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -354,8 +377,7 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-       
-        
+
     ],
 
     /*
@@ -371,13 +393,13 @@ return [
     */
 
     'filters' => [
-        JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+        GateFilter::class,
+        HrefFilter::class,
+        SearchFilter::class,
+        ActiveFilter::class,
+        ClassesFilter::class,
+        LangFilter::class,
+        DataFilter::class,
     ],
 
     /*
