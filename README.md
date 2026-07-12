@@ -1,11 +1,22 @@
 <p align="center">
   <img src="docs/banners/bookingflow-banner.png" width="1000">
 </p>
+
 # 🚍 BookingFlow Travel Platform
 
 A modern travel booking platform built with Laravel 12 featuring Role-Based Access Control (RBAC), AdminLTE dashboard, and a scalable architecture for travel agencies and booking businesses.
 
 ---
+
+## 🎯 Project Goals
+
+BookingFlow is being developed as a production-quality Laravel SaaS application to demonstrate:
+
+- Clean Architecture
+- Service Layer Pattern
+- Role-Based Access Control
+- Travel Booking Domain
+- Modern Laravel 12 Best Practices
 
 ## ✨ Features
 
@@ -29,6 +40,15 @@ A modern travel booking platform built with Laravel 12 featuring Role-Based Acce
 - View Permissions
 - Search Permissions
 - Role Mapping
+
+### 🚌 Bus Operator Management
+- Complete CRUD
+- Search & Pagination
+- Soft Deletes
+- Permission-Based Access
+- AdminLTE Interface
+- Validation with Form Requests
+- Service Layer Architecture
 
 ### 🔒 Role-Based Access Control (RBAC)
 - Spatie Laravel Permission
@@ -65,24 +85,33 @@ A modern travel booking platform built with Laravel 12 featuring Role-Based Acce
 ## Role Management
 
 ![Roles](docs/screenshots/roles.png)
-![Roles Edit](docs/screenshots/role-edit.png)
+
+![Role Edit](docs/screenshots/role-edit.png)
 
 ## Permission Management
 
 ![Permissions](docs/screenshots/permissions.png)
 
+## Bus Operator Management
+
+![Bus Operators](docs/screenshots/bus-operators-list.png)
+
+![Create Bus Operator](docs/screenshots/bus-operators-create.png)
+
 ---
 
 # 🚀 Tech Stack
 
-| Technology | Version |
-|------------|----------|
-| Laravel | 12 |
-| PHP | 8.x |
-| MySQL | 8 |
-| Bootstrap | 5 |
-| AdminLTE | 3 |
-| Spatie Permission | Latest |
+| Technology                | Version |
+| ------------------------- | ------- |
+| Laravel                   | 12      |
+| PHP                       | 8.4     |
+| MySQL                     | 8       |
+| Bootstrap                 | 5       |
+| AdminLTE                  | 3       |
+| Spatie Laravel Permission | Latest  |
+| Laravel Pint              | Latest  |
+
 
 ---
 
@@ -141,10 +170,10 @@ php artisan serve
 - RBAC
 
 ## 🚧 Version 1.1
-- Customer Management
-- Booking Management
-- Bus Management
-- Trip Scheduling
+- ✅ Bus Operators
+- ⬜ Buses
+- ⬜ Routes
+- ⬜ Trips
 
 ## 🚧 Version 1.2
 - Payments
@@ -161,14 +190,11 @@ php artisan serve
 ---
 
 
-
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 **Vishnu Singh Sikarwar**
 
 Senior Laravel Full Stack Developer
 
-GitHub
-
-https://github.com/vishnu91sikarwar
- 📧 Email: monu91sikarwar@gmail.com
+- GitHub: https://github.com/vishnu91sikarwar
+- Email: monu91sikarwar@gmail.com
