@@ -365,6 +365,18 @@ return [
             'icon' => 'fas fa-bus',
             'can' => 'bus-operators.view',
         ],
+        [
+            'text' => 'Buses',
+            'url' => 'buses',
+            'icon' => 'fas fa-bus',
+            'can' => 'buses.view',
+        ],
+        [
+            'text' => 'Bus Routes',
+            'url' => 'bus-routes',
+            'icon' => 'fas fa-route',
+            'can' => 'bus-routes.view',
+        ],
 
         ['header' => 'account_settings'],
         [

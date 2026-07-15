@@ -59,4 +59,9 @@ class BusOperator extends Model
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
+
+    public function buses()
+    {
+        return $this->hasMany(Bus::class);
+    }
 }

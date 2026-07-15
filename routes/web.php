@@ -7,7 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+use App\Http\Controllers\Admin\BusController;
 use App\Http\Controllers\Admin\BusOperatorController;
+use App\Http\Controllers\Admin\BusRouteController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
@@ -70,6 +72,38 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('bus-operators', BusOperatorController::class)
         ->only(['destroy'])
         ->middleware('permission:bus-operators.delete');
+
+    Route::resource('buses', BusController::class)
+        ->only(['index'])
+        ->middleware('permission:buses.view');
+
+    Route::resource('buses', BusController::class)
+        ->only(['create', 'store'])
+        ->middleware('permission:buses.create');
+
+    Route::resource('buses', BusController::class)
+        ->only(['edit', 'update'])
+        ->middleware('permission:buses.edit');
+
+    Route::resource('buses', BusController::class)
+        ->only(['destroy'])
+        ->middleware('permission:buses.delete');
+
+    Route::resource('bus-routes', BusRouteController::class)
+        ->only(['index'])
+        ->middleware('permission:bus-routes.view');
+
+    Route::resource('bus-routes', BusRouteController::class)
+        ->only(['create', 'store'])
+        ->middleware('permission:bus-routes.create');
+
+    Route::resource('bus-routes', BusRouteController::class)
+        ->only(['edit', 'update'])
+        ->middleware('permission:bus-routes.edit');
+
+    Route::resource('bus-routes', BusRouteController::class)
+        ->only(['destroy'])
+        ->middleware('permission:bus-routes.delete');
 
 });
 
