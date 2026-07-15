@@ -377,6 +377,12 @@ return [
             'icon' => 'fas fa-route',
             'can' => 'bus-routes.view',
         ],
+        [
+            'text' => 'Trips',
+            'url' => 'trips',
+            'icon' => 'fas fa-calendar-alt',
+            'can' => 'trips.view',
+        ],
 
         ['header' => 'account_settings'],
         [

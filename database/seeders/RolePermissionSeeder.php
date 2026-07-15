@@ -52,6 +52,12 @@ class RolePermissionSeeder extends Seeder
             'bus-routes.create',
             'bus-routes.edit',
             'bus-routes.delete',
+
+            // Trip
+            'trips.view',
+            'trips.create',
+            'trips.edit',
+            'trips.delete',
         ];
 
         foreach ($permissions as $permission) {

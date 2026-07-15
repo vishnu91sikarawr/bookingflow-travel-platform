@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\BusRouteController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TripController;
 use App\Http\Controllers\Admin\UserController;
 
 Route::middleware(['auth'])->group(function () {
@@ -104,6 +105,22 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('bus-routes', BusRouteController::class)
         ->only(['destroy'])
         ->middleware('permission:bus-routes.delete');
+
+    Route::resource('trips', TripController::class)
+        ->only(['index'])
+        ->middleware('permission:trips.view');
+
+    Route::resource('trips', TripController::class)
+        ->only(['create', 'store'])
+        ->middleware('permission:trips.create');
+
+    Route::resource('trips', TripController::class)
+        ->only(['edit', 'update'])
+        ->middleware('permission:trips.edit');
+
+    Route::resource('trips', TripController::class)
+        ->only(['destroy'])
+        ->middleware('permission:trips.delete');
 
 });
 

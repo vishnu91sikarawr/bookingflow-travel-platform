@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RolePermissionSeeder::class,
+            BusOperatorSeeder::class,
+            BusSeeder::class,
+            BusRouteSeeder::class,
+            TripSeeder::class,
         ]);
 
         $user = User::firstOrCreate(
