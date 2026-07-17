@@ -15,6 +15,10 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TripController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\SeatSelectionController;
+
+
 
 Route::middleware(['auth'])->group(function () {
 
@@ -129,5 +133,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/search', [HomeController::class, 'search'])->name('search');
+
+Route::get('/trips/{trip}/seat-selection', [SeatSelectionController::class, 'index'])
+    ->name('frontend.seat-selection');
+
+Route::post('/trips/{trip}/booking', [BookingController::class, 'store'])
+    ->name('booking.store');
+
 
 require __DIR__.'/auth.php';
