@@ -1,105 +1,186 @@
-@extends('layouts.app')
-
+@extends('frontend.layouts.app')
 @section('content')
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-<!-- Hero Section -->
+<!-- =========================================================
+     HERO / SEARCH
+========================================================= -->
 
-<section class="hero-section">
-<div class="hero-overlay">
 
-    <div class="container">
+<section
+    class="hero-section"
+    style="background-image: url('{{ asset('images/hero-bus.png') }}');"
+>
 
-        <div class="row justify-content-center">
+    <div class="hero-overlay">
 
-            <div class="col-lg-10 text-center">
+        <div class="container">
 
-                <h1 class="display-4 fw-bold text-white">
-                    Travel Across India
-                </h1>
+            <div class="hero-content">
 
-                <p class="lead text-white mb-5">
-                    Book bus tickets online with comfort, safety and the best prices.
-                    <div class="search-card">
+                <div class="text-center text-white mb-4">
 
-    <form action="{{ route('search') }}" method="GET">
+                    <span class="hero-badge">
+                        <i class="bi bi-bus-front-fill me-1"></i>
+                        India's Bus Booking Platform
+                    </span>
 
-        <div class="row g-3">
+                    <h1 class="display-4 fw-bold mt-3 mb-3">
+                        Travel Across India
+                    </h1>
 
-            <div class="col-md-3">
+                    <p class="lead mb-0">
+                        Find buses, compare fares and book your seat
+                        with confidence.
+                    </p>
 
-                <label class="form-label">
-                    From
-                </label>
+                </div>
 
-                <select
-                    name="from"
-                    class="form-select">
 
-                    @foreach($cities as $city)
+                <!-- SEARCH CARD -->
 
-                        <option value="{{ $city }}">
-                            {{ $city }}
-                        </option>
+                <div class="search-card" id="search">
 
-                    @endforeach
+                    <div class="search-card-header">
 
-                </select>
+                        <h4 class="fw-bold mb-1">
+                            Search Buses
+                        </h4>
 
-            </div>
+                        <p class="text-muted mb-0">
+                            Find the best bus for your journey
+                        </p>
 
-            <div class="col-md-3">
+                    </div>
 
-                <label class="form-label">
-                    To
-                </label>
 
-                <select
-                    name="to"
-                    class="form-select">
+                    <form
+                        action="{{ route('search') }}"
+                        method="GET"
+                    >
 
-                    @foreach($cities as $city)
+                        <div class="row g-3 align-items-end">
 
-                        <option value="{{ $city }}">
-                            {{ $city }}
-                        </option>
+                            <!-- FROM -->
 
-                    @endforeach
+                            <div class="col-lg-3 col-md-6">
 
-                </select>
+                                <label class="form-label fw-semibold">
+                                    From
+                                </label>
 
-            </div>
+                                <div class="search-input-wrapper">
 
-            <div class="col-md-3">
+                                    <i class="bi bi-geo-alt"></i>
 
-                <label class="form-label">
-                    Journey Date
-                </label>
+                                    <select
+                                        name="from"
+                                        class="form-select search-input"
+                                        required
+                                    >
 
-                <input
-                    type="date"
-                    name="date"
-                    class="form-control">
+                                        <option value="">
+                                            Select departure city
+                                        </option>
 
-            </div>
+                                        @foreach($cities as $city)
 
-            <div class="col-md-3 d-grid">
+                                            <option value="{{ $city }}">
+                                                {{ $city }}
+                                            </option>
 
-                <label>&nbsp;</label>
+                                        @endforeach
 
-                <button class="btn btn-warning btn-lg">
+                                    </select>
 
-                    Search Buses
+                                </div>
 
-                </button>
+                            </div>
 
-            </div>
 
-        </div>
+                            <!-- TO -->
 
-    </form>
+                            <div class="col-lg-3 col-md-6">
 
-</div>
-                </p>
+                                <label class="form-label fw-semibold">
+                                    To
+                                </label>
+
+                                <div class="search-input-wrapper">
+
+                                    <i class="bi bi-geo-alt-fill"></i>
+
+                                    <select
+                                        name="to"
+                                        class="form-select search-input"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Select destination
+                                        </option>
+
+                                        @foreach($cities as $city)
+
+                                            <option value="{{ $city }}">
+                                                {{ $city }}
+                                            </option>
+
+                                        @endforeach
+
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- DATE -->
+
+                            <div class="col-lg-3 col-md-6">
+
+                                <label class="form-label fw-semibold">
+                                    Journey Date
+                                </label>
+
+                                <div class="search-input-wrapper">
+
+                                    <i class="bi bi-calendar3"></i>
+
+                                    <input
+                                        type="date"
+                                        name="date"
+                                        class="form-control search-input"
+                                        min="{{ date('Y-m-d') }}"
+                                        required
+                                    >
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- BUTTON -->
+
+                            <div class="col-lg-3 col-md-6">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary btn-lg w-100 search-button"
+                                >
+
+                                    <i class="bi bi-search me-2"></i>
+
+                                    Search Buses
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
 
             </div>
 
@@ -107,68 +188,95 @@
 
     </div>
 
-</div>
 </section>
+<!-- =========================================================
+     STATISTICS
+========================================================= -->
 
-<!-- Statistics -->
-
-<section class="stats-section py-5">
+<section class="stats-section">
 
     <div class="container">
 
-        <div class="row text-center">
+        <div class="row g-4">
 
-            <div class="col-lg-3 col-6 mb-4">
+            <div class="col-lg-3 col-6">
 
                 <div class="stat-card">
 
-                    <i class="bi bi-bus-front-fill stat-icon"></i>
+                    <div class="stat-icon">
+                        <i class="bi bi-bus-front-fill"></i>
+                    </div>
 
-                    <h2>500+</h2>
+                    <h3>
+                        500+
+                    </h3>
 
-                    <p>Bus Operators</p>
+                    <p>
+                        Bus Operators
+                    </p>
 
                 </div>
 
             </div>
 
-            <div class="col-lg-3 col-6 mb-4">
+
+            <div class="col-lg-3 col-6">
 
                 <div class="stat-card">
 
-                    <i class="bi bi-geo-alt-fill stat-icon"></i>
+                    <div class="stat-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
 
-                    <h2>2,000+</h2>
+                    <h3>
+                        2,000+
+                    </h3>
 
-                    <p>Routes</p>
+                    <p>
+                        Routes
+                    </p>
 
                 </div>
 
             </div>
 
-            <div class="col-lg-3 col-6 mb-4">
+
+            <div class="col-lg-3 col-6">
 
                 <div class="stat-card">
 
-                    <i class="bi bi-people-fill stat-icon"></i>
+                    <div class="stat-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
 
-                    <h2>50K+</h2>
+                    <h3>
+                        50K+
+                    </h3>
 
-                    <p>Happy Customers</p>
+                    <p>
+                        Happy Customers
+                    </p>
 
                 </div>
 
             </div>
 
-            <div class="col-lg-3 col-6 mb-4">
+
+            <div class="col-lg-3 col-6">
 
                 <div class="stat-card">
 
-                    <i class="bi bi-ticket-perforated-fill stat-icon"></i>
+                    <div class="stat-icon">
+                        <i class="bi bi-ticket-perforated-fill"></i>
+                    </div>
 
-                    <h2>1M+</h2>
+                    <h3>
+                        1M+
+                    </h3>
 
-                    <p>Tickets Booked</p>
+                    <p>
+                        Tickets Booked
+                    </p>
 
                 </div>
 
@@ -179,63 +287,151 @@
     </div>
 
 </section>
-<!-- Popular Routes -->
 
-<section class="popular-routes py-5">
+
+<!-- =========================================================
+     POPULAR ROUTES
+========================================================= -->
+
 <section class="popular-routes py-5 bg-light">
 
     <div class="container">
 
-        <div class="text-center mb-5">
+        <div class="section-heading text-center mb-5">
 
-            <h2 class="fw-bold">Popular Routes</h2>
+            <span class="section-label">
+                Explore Routes
+            </span>
 
-            <p class="text-muted">
-                Find buses on India's most travelled routes.
+            <h2 class="fw-bold mt-2">
+                Popular Routes
+            </h2>
+
+            <p class="text-muted mb-0">
+                Discover popular destinations across India.
             </p>
 
         </div>
 
-        <div class="row">
 
-            @php
-                $routes = [
-                    ['Delhi','Jaipur','₹499'],
-                    ['Delhi','Agra','₹399'],
-                    ['Mumbai','Pune','₹450'],
-                    ['Bengaluru','Mysuru','₹350'],
-                    ['Hyderabad','Vijayawada','₹420'],
-                    ['Chennai','Coimbatore','₹550']
-                ];
-            @endphp
+        @php
+
+            $routes = [
+
+                [
+                    'from' => 'Delhi',
+                    'to' => 'Jaipur',
+                    'fare' => '₹499'
+                ],
+
+                [
+                    'from' => 'Delhi',
+                    'to' => 'Agra',
+                    'fare' => '₹399'
+                ],
+
+                [
+                    'from' => 'Mumbai',
+                    'to' => 'Pune',
+                    'fare' => '₹450'
+                ],
+
+                [
+                    'from' => 'Bengaluru',
+                    'to' => 'Mysuru',
+                    'fare' => '₹350'
+                ],
+
+                [
+                    'from' => 'Hyderabad',
+                    'to' => 'Vijayawada',
+                    'fare' => '₹420'
+                ],
+
+                [
+                    'from' => 'Chennai',
+                    'to' => 'Coimbatore',
+                    'fare' => '₹550'
+                ]
+
+            ];
+
+        @endphp
+
+
+        <div class="row g-4">
 
             @foreach($routes as $route)
 
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6">
 
-                    <div class="route-card">
+                    <div class="route-card h-100">
 
-                        <h4>{{ $route[0] }}</h4>
+                        <div class="route-icon">
 
-                        <div class="my-3">
-
-                            <i class="bi bi-arrow-down fs-4 text-warning"></i>
+                            <i class="bi bi-bus-front"></i>
 
                         </div>
 
-                        <h4>{{ $route[1] }}</h4>
 
-                        <p class="text-muted">
-                            Starting from
-                        </p>
+                        <div class="route-cities">
 
-                        <h3 class="text-primary">
-                            {{ $route[2] }}
-                        </h3>
+                            <div>
+                                <span class="text-muted small">
+                                    From
+                                </span>
 
-                        <a href="#" class="btn btn-outline-warning mt-3">
-                            View Buses
-                        </a>
+                                <h5 class="fw-bold mb-0">
+                                    {{ $route['from'] }}
+                                </h5>
+                            </div>
+
+
+                            <div class="route-arrow">
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </div>
+
+
+                            <div class="text-end">
+
+                                <span class="text-muted small">
+                                    To
+                                </span>
+
+                                <h5 class="fw-bold mb-0">
+                                    {{ $route['to'] }}
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="route-footer">
+
+                            <div>
+
+                                <small class="text-muted d-block">
+                                    Starting from
+                                </small>
+
+                                <strong class="text-primary fs-5">
+                                    {{ $route['fare'] }}
+                                </strong>
+
+                            </div>
+
+
+                            <a
+                                href="{{ route('home') }}#search"
+                                class="btn btn-outline-primary btn-sm"
+                            >
+                                Search
+                            </a>
+
+                        </div>
 
                     </div>
 
@@ -248,78 +444,120 @@
     </div>
 
 </section>
-</section>
 
-<!-- Why Choose Us -->
 
-<!-- Why Choose Us -->
+<!-- =========================================================
+     WHY CHOOSE US
+========================================================= -->
+
 <section class="why-us py-5">
 
     <div class="container">
 
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Why Choose BookingFlow?</h2>
-            <p class="text-muted">
-                We make bus travel simple, secure, and affordable.
+        <div class="section-heading text-center mb-5">
+
+            <span class="section-label">
+                Why BookingFlow
+            </span>
+
+            <h2 class="fw-bold mt-2">
+                Everything You Need for a Better Journey
+            </h2>
+
+            <p class="text-muted mb-0">
+                Simple booking, transparent pricing and a secure experience.
             </p>
+
         </div>
+
 
         <div class="row g-4">
 
             <div class="col-lg-3 col-md-6">
-                <div class="feature-card">
+
+                <div class="feature-card h-100">
+
                     <div class="feature-icon">
                         <i class="bi bi-shield-check"></i>
                     </div>
 
-                    <h4>Secure Booking</h4>
+                    <h5 class="fw-bold">
+                        Secure Booking
+                    </h5>
 
                     <p>
-                        Your payments and personal information are protected with secure technologies.
+                        Your booking and personal information are protected
+                        using secure technologies.
                     </p>
+
                 </div>
+
             </div>
 
+
             <div class="col-lg-3 col-md-6">
-                <div class="feature-card">
+
+                <div class="feature-card h-100">
+
                     <div class="feature-icon">
                         <i class="bi bi-cash-coin"></i>
                     </div>
 
-                    <h4>Best Prices</h4>
+                    <h5 class="fw-bold">
+                        Best Prices
+                    </h5>
 
                     <p>
-                        Compare fares from multiple operators and always find competitive ticket prices.
+                        Compare fares and choose a trip that fits your
+                        budget.
                     </p>
+
                 </div>
+
             </div>
 
+
             <div class="col-lg-3 col-md-6">
-                <div class="feature-card">
+
+                <div class="feature-card h-100">
+
                     <div class="feature-icon">
                         <i class="bi bi-headset"></i>
                     </div>
 
-                    <h4>24/7 Support</h4>
+                    <h5 class="fw-bold">
+                        Helpful Support
+                    </h5>
 
                     <p>
-                        Our support team is available anytime to help with bookings and travel queries.
+                        Get assistance whenever you need help with your
+                        booking or journey.
                     </p>
+
                 </div>
+
             </div>
+
 
             <div class="col-lg-3 col-md-6">
-                <div class="feature-card">
+
+                <div class="feature-card h-100">
+
                     <div class="feature-icon">
-                        <i class="bi bi-geo-alt"></i>
+                        <i class="bi bi-map"></i>
                     </div>
 
-                    <h4>Wide Coverage</h4>
+                    <h5 class="fw-bold">
+                        Wide Coverage
+                    </h5>
 
                     <p>
-                        Travel across hundreds of cities with trusted bus operators throughout India.
+                        Discover routes and destinations across cities
+                        throughout India.
                     </p>
+
                 </div>
+
             </div>
 
         </div>
@@ -328,97 +566,131 @@
 
 </section>
 
-<section class="cta-section py-5">
 
-    <div class="container">
-
-        <div class="cta-box text-center">
-
-            <h2 class="fw-bold text-white">
-                Ready to Book Your Next Journey?
-            </h2>
-
-            <p class="text-white-50 mt-3">
-                Search buses, compare prices, and reserve your seat in just a few clicks.
-            </p>
-
-            <a href="#search" class="btn btn-light btn-lg mt-3">
-                Search Buses
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
 
 <section class="how-it-works py-5 bg-light">
 
     <div class="container">
 
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">How BookingFlow Works</h2>
-            <p class="text-muted">
-                Book your journey in just four simple steps.
+        <div class="section-heading text-center mb-5">
+
+            <span class="section-label">
+                Simple Process
+            </span>
+
+            <h2 class="fw-bold mt-2">
+                How BookingFlow Works
+            </h2>
+
+            <p class="text-muted mb-0">
+                Book your journey in four simple steps.
             </p>
+
         </div>
 
-        <div class="row text-center">
 
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="step-card">
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="step-card h-100">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
                     <div class="step-icon">
                         <i class="bi bi-search"></i>
                     </div>
 
-                    <h5>Search</h5>
+                    <h5 class="fw-bold">
+                        Search
+                    </h5>
 
                     <p>
-                        Enter your source, destination and travel date.
+                        Enter your departure city, destination and travel date.
                     </p>
+
                 </div>
+
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="step-card">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="step-card h-100">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
                     <div class="step-icon">
                         <i class="bi bi-bus-front"></i>
                     </div>
 
-                    <h5>Select Bus</h5>
+                    <h5 class="fw-bold">
+                        Select Bus
+                    </h5>
 
                     <p>
-                        Compare buses, timings and ticket prices.
+                        Compare available buses, timings and fares.
                     </p>
+
                 </div>
+
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="step-card">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="step-card h-100">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
                     <div class="step-icon">
                         <i class="bi bi-credit-card"></i>
                     </div>
 
-                    <h5>Secure Payment</h5>
+                    <h5 class="fw-bold">
+                        Complete Booking
+                    </h5>
 
                     <p>
-                        Complete your booking using a secure payment gateway.
+                        Select your seats and provide passenger details.
                     </p>
+
                 </div>
+
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="step-card">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="step-card h-100">
+
+                    <div class="step-number">
+                        04
+                    </div>
+
                     <div class="step-icon">
                         <i class="bi bi-ticket-perforated"></i>
                     </div>
 
-                    <h5>Travel</h5>
+                    <h5 class="fw-bold">
+                        Travel
+                    </h5>
 
                     <p>
-                        Receive your e-ticket and enjoy your journey.
+                        Receive your booking confirmation and enjoy your trip.
                     </p>
+
                 </div>
+
             </div>
 
         </div>
@@ -427,44 +699,66 @@
 
 </section>
 
+
+<!-- =========================================================
+     TESTIMONIALS
+========================================================= -->
+
 <section class="testimonials py-5">
 
     <div class="container">
 
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">What Our Customers Say</h2>
-            <p class="text-muted">
-                Thousands of travelers trust BookingFlow for their journeys.
+        <div class="section-heading text-center mb-5">
+
+            <span class="section-label">
+                Customer Reviews
+            </span>
+
+            <h2 class="fw-bold mt-2">
+                What Travelers Say
+            </h2>
+
+            <p class="text-muted mb-0">
+                A simple booking experience makes every journey better.
             </p>
+
         </div>
 
-        <div class="row">
 
-            <div class="col-lg-4 mb-4">
+        <div class="row g-4">
 
-                <div class="testimonial-card">
+
+            <!-- Testimonial 1 -->
+
+            <div class="col-lg-4">
+
+                <div class="testimonial-card h-100">
 
                     <div class="stars mb-3">
-                        ⭐⭐⭐⭐⭐
+                        ★★★★★
                     </div>
 
                     <p>
-                        BookingFlow made my trip effortless. The booking process was fast and the journey was comfortable.
+                        “The booking process was simple and quick.
+                        I found my bus and selected my seat without any
+                        confusion.”
                     </p>
 
-                    <div class="d-flex align-items-center mt-4">
+                    <div class="testimonial-user">
 
-                        <img src="https://i.pravatar.cc/60?img=5"
-                             class="rounded-circle me-3"
-                             width="60">
+                        <div class="avatar">
+                            RS
+                        </div>
 
                         <div>
 
-                            <strong>Rahul Sharma</strong>
+                            <strong>
+                                Rahul Sharma
+                            </strong>
 
-                            <div class="text-muted">
+                            <small>
                                 Delhi
-                            </div>
+                            </small>
 
                         </div>
 
@@ -474,7 +768,130 @@
 
             </div>
 
-            <!-- Duplicate this card two more times -->
+
+            <!-- Testimonial 2 -->
+
+            <div class="col-lg-4">
+
+                <div class="testimonial-card h-100">
+
+                    <div class="stars mb-3">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        “The interface is clean and finding the right
+                        trip was very easy. The seat selection was
+                        especially helpful.”
+                    </p>
+
+                    <div class="testimonial-user">
+
+                        <div class="avatar">
+                            AP
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Ananya Patel
+                            </strong>
+
+                            <small>
+                                Mumbai
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Testimonial 3 -->
+
+            <div class="col-lg-4">
+
+                <div class="testimonial-card h-100">
+
+                    <div class="stars mb-3">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        “I could compare buses and fares quickly.
+                        BookingFlow makes planning a bus journey much
+                        easier.”
+                    </p>
+
+                    <div class="testimonial-user">
+
+                        <div class="avatar">
+                            VK
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Vikram Kumar
+                            </strong>
+
+                            <small>
+                                Bengaluru
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta-section py-5">
+
+    <div class="container">
+
+        <div class="cta-box">
+
+            <div>
+
+                <span class="text-white-50 small">
+                    READY FOR YOUR NEXT JOURNEY?
+                </span>
+
+                <h2 class="fw-bold text-white mt-2 mb-2">
+                    Find Your Bus and Book Your Seat
+                </h2>
+
+                <p class="text-white-50 mb-0">
+                    Compare routes, choose your bus and travel with confidence.
+                </p>
+
+            </div>
+
+
+            <a
+                href="#search"
+                class="btn btn-light btn-lg px-4"
+            >
+                <i class="bi bi-search me-2"></i>
+                Search Buses
+            </a>
+
         </div>
 
     </div>

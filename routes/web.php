@@ -3,9 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 use App\Http\Controllers\Admin\BusController;
 use App\Http\Controllers\Admin\BusOperatorController;
@@ -17,7 +15,7 @@ use App\Http\Controllers\Admin\TripController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\SeatSelectionController;
-
+use App\Http\Controllers\Frontend\BookingController;
 
 
 Route::middleware(['auth'])->group(function () {
@@ -143,6 +141,14 @@ Route::get('/trips/{trip}/seat-selection', [SeatSelectionController::class, 'ind
 
 Route::post('/trips/{trip}/booking', [BookingController::class, 'store'])
     ->name('booking.store');
+
+Route::post('/passenger-details', [BookingController::class, 'passengerDetails'])
+    ->name('frontend.passenger-details');
+
+Route::get('/trips/{trip}/review', [BookingController::class, 'review'])
+    ->name('booking.review');
+Route::get('/booking/{booking}/confirmation', [BookingController::class, 'confirmation'])
+    ->name('booking.confirmation');
 
 
 require __DIR__.'/auth.php';

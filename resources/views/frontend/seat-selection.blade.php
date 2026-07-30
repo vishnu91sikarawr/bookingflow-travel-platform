@@ -10,12 +10,23 @@
 
         <!-- Breadcrumb -->
         <nav class="mb-4">
-            <a href="{{ route('home') }}">Home</a>
+
+            <a href="{{ route('home') }}">
+                Home
+            </a>
+
             /
-            <a href="{{ route('search') }}">Bus List</a>
+
+            <a href="{{ route('search') }}">
+                Bus List
+            </a>
+
             /
+
             Seat Selection
+
         </nav>
+
 
         <!-- Trip Card -->
         <div class="card shadow-sm border-0 rounded-4 mb-4">
@@ -31,17 +42,25 @@
                         </h3>
 
                         <p class="mb-1">
+
                             {{ $trip->busRoute->source_city }}
+
                             →
+
                             {{ $trip->busRoute->destination_city }}
+
                         </p>
 
                         <small class="text-muted">
+
                             Departure:
+
                             {{ \Carbon\Carbon::parse($trip->departure_time)->format('d M Y, h:i A') }}
+
                         </small>
 
                     </div>
+
 
                     <div class="col-md-4 text-end">
 
@@ -51,7 +70,9 @@
 
                         </h3>
 
-                        <small>Per Seat</small>
+                        <small>
+                            Per Seat
+                        </small>
 
                     </div>
 
@@ -61,12 +82,14 @@
 
         </div>
 
-        <!-- Seat Layout Placeholder -->
 
-        <div
+        <!-- Vue Seat Selection -->
+
+      <div
     id="app"
     data-trip-id="{{ $trip->id }}"
-    data-fare="{{ $trip->fare }}">
+    data-fare="{{ $trip->fare }}"
+>
 </div>
 
     </div>
