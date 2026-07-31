@@ -14,7 +14,7 @@
 
         </button>
 
-        <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-collapse" id="navbar">
 
             <ul class="navbar-nav ms-auto">
 
@@ -36,11 +36,61 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="btn btn-light ms-3" href="{{ route('login') }}">
-                        Login
-                    </a>
-                </li>
+               @auth
+
+    @if(auth()->user()->hasRole('Customer'))
+
+        <li class="nav-item">
+            <a class="nav-link"
+               href="{{ route('my-bookings') }}">
+                My Bookings
+            </a>
+        </li>
+
+    @endif
+
+
+    <li class="nav-item">
+
+        <form method="POST"
+              action="{{ route('logout') }}">
+
+            @csrf
+
+            <button type="submit"
+                    class="btn btn-link nav-link">
+
+                Logout
+
+            </button>
+
+        </form>
+
+    </li>
+
+
+@else
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           href="{{ route('login') }}">
+            Login
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           href="{{ route('register') }}">
+            Register
+        </a>
+
+    </li>
+
+@endauth
 
             </ul>
 

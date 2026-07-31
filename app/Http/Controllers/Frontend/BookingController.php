@@ -7,6 +7,8 @@ use App\Models\Trip;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Services\BookingService;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 use Illuminate\Support\Facades\DB;
 
@@ -242,6 +244,116 @@ public function myBookings()
         ->get();
 
     return view('frontend.booking.index', compact('bookings'));
+}
+
+public function showBooking(Booking $booking)
+{
+    // Security: only owner can view
+    if ($booking->user_id !== auth()->id()) {
+        abort(403);
+    }
+
+    $booking->load([
+        'trip.bus',
+        'trip.busRoute',
+        'passengers',
+    ]);
+
+    return view('frontend.booking.show', compact('booking'));
+}
+
+public function downloadTicket(Booking $booking)
+{
+    if (auth()->check()) {
+
+    if ($booking->user_id !== auth()->id()) {
+        abort(403);
+    }
+
+}
+
+    $booking->load([
+        'trip.bus',
+        'trip.busRoute',
+        'passengers',
+    ]);
+
+    $pdf = Pdf::loadView(
+        'frontend.booking.ticket',
+        compact('booking')
+    );
+
+    return $pdf->download(
+        'Booking-BF-' .
+        str_pad($booking->id, 6, '0', STR_PAD_LEFT) .
+        '.pdf'
+    );
+}
+
+public function findBooking()
+{
+    return view('frontend.booking.find');
+}
+
+public function searchBooking(Request $request)
+{
+    $validated = $request->validate([
+        'booking_reference' => [
+            'required',
+            'string'
+        ],
+
+        'email' => [
+            'required',
+            'email'
+        ],
+    ]);
+
+
+    $bookingId = str_replace(
+        'BF-',
+        '',
+        $validated['booking_reference']
+    );
+
+
+    $bookingId = ltrim($bookingId, '0');
+
+
+    $booking = Booking::where('id', $bookingId)
+        ->where('contact_email', $validated['email'])
+        ->first();
+
+
+    if (!$booking) {
+
+        return back()
+            ->with('error',
+                'Booking not found.'
+            );
+
+    }
+
+
+    return redirect()->route(
+        'booking.guest-details',
+        $booking
+    );
+}
+
+
+    public function guestDetails(Booking $booking)
+{
+    $booking->load([
+        'trip.bus',
+        'trip.busRoute',
+        'passengers',
+    ]);
+
+    return view(
+        'frontend.booking.guest-details',
+        compact('booking')
+    );
 }
 
 }

@@ -178,4 +178,21 @@ Route::middleware('auth')->group(function () {
         ->name('booking.details');
 
 });
+
+Route::get('/bookings/{booking}/ticket',
+    [BookingController::class,'downloadTicket'])
+    ->name('booking.ticket');
+
+Route::get('/find-booking',
+    [BookingController::class, 'findBooking'])
+    ->name('booking.find');
+
+
+Route::post('/find-booking',
+    [BookingController::class, 'searchBooking'])
+    ->name('booking.search');
+Route::get('/guest-booking/{booking}',
+    [BookingController::class, 'guestDetails'])
+    ->name('booking.guest-details');
+
 require __DIR__.'/auth.php';
