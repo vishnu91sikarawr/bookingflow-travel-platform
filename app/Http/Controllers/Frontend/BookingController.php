@@ -8,6 +8,9 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Services\BookingService;
 
+use Illuminate\Support\Facades\DB;
+
+
 class BookingController extends Controller
 {
      public function __construct(
@@ -56,6 +59,9 @@ public function passengerDetails(Request $request)
 public function store(Request $request, Trip $trip)
 {
    $validated = $request->validate([
+    'contact_name' => ['required', 'string', 'max:255'],
+    'contact_email' => ['required', 'email', 'max:255'],
+    'contact_phone' => ['required', 'string', 'max:20'],
     'passengers' => ['required', 'array', 'min:1'],
     'passengers.*.name' => ['required', 'string', 'max:255'],
     'passengers.*.age' => ['required', 'integer', 'min:1', 'max:120'],
@@ -68,13 +74,14 @@ public function store(Request $request, Trip $trip)
     $seatCount = count($validated['seats']);
 
     $data = [
-        'contact_name'   => $validated['passengers'][0]['name'],
-        'contact_email'  => null,
-        'contact_phone'  => '9999999999', // Temporary
+        'contact_name'   => $validated['contact_name'],
+    'contact_email'  => $validated['contact_email'],
+    'contact_phone'  => $validated['contact_phone'],
         'passengers'     => $validated['passengers'],
         'seats'          => $validated['seats'],
         'fare_per_seat'  => $trip->fare,
         'total_amount'   => $trip->fare * $seatCount,
+
     ];
 
     try {
@@ -92,41 +99,149 @@ public function store(Request $request, Trip $trip)
 
     }
 }
-public function review(Trip $trip)
+
+public function review(Request $request, Trip $trip)
 {
-    $booking = session('booking');
+    $validated = $request->validate([
+        'passengers' => ['required', 'array', 'min:1'],
+        'passengers.*.name' => ['required', 'string', 'max:255'],
+        'passengers.*.age' => ['required', 'integer'],
+        'passengers.*.gender' => ['required'],
 
-    if (!$booking) {
-        return redirect()->route('home');
-    }
+        'seats' => ['required', 'array'],
+        'seats.*' => ['required', 'string'],
+        'contact_name' => ['required', 'string', 'max:255'],
+        'contact_email' => ['required', 'email'],
+        'contact_phone' => ['required', 'string', 'max:20'],
+    ]);
 
-    $seatCount = count($booking['seats']);
+    $seatCount = count($validated['seats']);
 
     $farePerSeat = $trip->fare;
 
     $totalFare = $seatCount * $farePerSeat;
 
-    return view('frontend.booking.review', compact(
-        'trip',
-        'booking',
-        'seatCount',
-        'farePerSeat',
-        'totalFare'
-    ));
+    return view('frontend.booking.review', [
+
+    'trip' => $trip,
+
+    'passengers' => $validated['passengers'],
+
+    'seats' => $validated['seats'],
+
+    'contactName' => $validated['contact_name'],
+
+    'contactEmail' => $validated['contact_email'],
+
+    'contactPhone' => $validated['contact_phone'],
+
+    'seatCount' => $seatCount,
+
+    'farePerSeat' => $farePerSeat,
+
+    'totalFare' => $totalFare,
+
+   ]);
 }
+
+
+
+
+public function processPayment(Request $request)
+{
+    $validated = $request->validate([
+        'trip_id' => ['required', 'exists:trips,id'],
+
+        'contact_name' => ['required', 'string'],
+        'contact_email' => ['required', 'email'],
+        'contact_phone' => ['required', 'string'],
+
+        'passengers' => ['required', 'array'],
+        'seats' => ['required', 'array'],
+    ]);
+
+    $trip = Trip::findOrFail($validated['trip_id']);
+
+    $seatCount = count($validated['seats']);
+
+    $data = [
+        'contact_name' => $validated['contact_name'],
+        'contact_email' => $validated['contact_email'],
+        'contact_phone' => $validated['contact_phone'],
+        'passengers' => $validated['passengers'],
+        'seats' => $validated['seats'],
+        'fare_per_seat' => $trip->fare,
+        'total_amount' => $trip->fare * $seatCount,
+    ];
+
+    try {
+
+        $booking = $this->bookingService->createBooking(
+            $trip,
+            $data
+        );
+
+        // Dummy payment success
+        $booking->update([
+            'payment_status' => 'paid',
+            'booking_status' => 'confirmed',
+        ]);
+
+        return redirect()->route(
+            'booking.confirmation',
+            $booking
+        );
+
+    } catch (\Exception $e) {
+
+    return redirect()
+        ->route('frontend.seat-selection', $validated['trip_id'])
+        ->with('error', $e->getMessage());
+
+}
+}
+
+    public function paymentSuccess(Booking $booking)
+{
+
+    $booking->update([
+        'payment_status' => 'paid',
+        'status' => 'confirmed',
+    ]);
+
+
+    return redirect()
+        ->route('booking.confirmation',$booking)
+        ->with('success','Payment successful!');
+
+}
+
 
 public function confirmation(Booking $booking)
 {
     $booking->load([
-    'trip.busRoute',
-    'trip.bus',
-    'passengers',
-   ]);
+        'trip.bus',
+        'trip.busRoute',
+        'passengers'
+    ]);
 
     return view(
         'frontend.booking.confirmation',
         compact('booking')
     );
+}
+
+public function myBookings()
+{
+    $bookings = Booking::with([
+            'trip.busRoute',
+            'trip.bus'
+        ])
+        ->where('user_id', auth()->id())
+        ->latest()
+        ->get();
+
+    return view('frontend.booking.index', compact('bookings'));
 }
 
 }

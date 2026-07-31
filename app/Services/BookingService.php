@@ -26,7 +26,7 @@ class BookingService
         $booking = Booking::create([
             'booking_number' => $this->generateBookingNumber(),
             'trip_id' => $trip->id,
-            'user_id' => auth()->id(),
+            'user_id' => auth()->check() ? auth()->id() : null,
             'contact_name' => $data['contact_name'],
             'contact_email' => $data['contact_email'],
             'contact_phone' => $data['contact_phone'],

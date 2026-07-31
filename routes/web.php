@@ -145,10 +145,37 @@ Route::post('/trips/{trip}/booking', [BookingController::class, 'store'])
 Route::post('/passenger-details', [BookingController::class, 'passengerDetails'])
     ->name('frontend.passenger-details');
 
-Route::get('/trips/{trip}/review', [BookingController::class, 'review'])
+Route::post('/trips/{trip}/review', [BookingController::class, 'review'])
     ->name('booking.review');
+
+   Route::get('/trips/{trip}/review',
+    [BookingController::class, 'showReview'])
+    ->name('booking.review.page');
+
+
 Route::get('/booking/{booking}/confirmation', [BookingController::class, 'confirmation'])
     ->name('booking.confirmation');
 
+Route::post('/trips/{trip}/payment', [BookingController::class, 'payment'])
+    ->name('booking.payment');
 
+Route::post('/booking/process-payment',
+    [BookingController::class, 'processPayment'])
+    ->name('booking.process-payment');
+
+Route::get('/api/trips/{trip}/booked-seats',
+    [SeatSelectionController::class, 'bookedSeats'])
+    ->name('api.booked-seats');
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/my-bookings',
+        [BookingController::class, 'myBookings'])
+        ->name('my-bookings');
+
+    Route::get('/my-bookings/{booking}',
+        [BookingController::class, 'showBooking'])
+        ->name('booking.details');
+
+});
 require __DIR__.'/auth.php';

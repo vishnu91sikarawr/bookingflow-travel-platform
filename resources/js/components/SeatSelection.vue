@@ -172,8 +172,8 @@
 
 <script setup>
 
-import { ref, computed } from 'vue'
 
+import { ref, computed, onMounted } from 'vue'
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +224,7 @@ const seats = ref([
 
     {
         number: 'A3',
-        booked: true
+        booked: false
     },
 
     {
@@ -298,7 +298,7 @@ const seats = ref([
 
     {
         number: 'E1',
-        booked: true
+        booked: false
     },
 
     {
@@ -319,6 +319,19 @@ const seats = ref([
 ])
 
 
+onMounted(async () => {
+
+    const response = await fetch(
+        `/api/trips/${props.tripId}/booked-seats`
+    );
+
+    const bookedSeats = await response.json();
+
+    seats.value.forEach(seat => {
+        seat.booked = bookedSeats.includes(seat.number);
+    });
+
+});
 /*
 |--------------------------------------------------------------------------
 | Selected Seats
