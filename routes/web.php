@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\SeatSelectionController;
 use App\Http\Controllers\Frontend\BookingController;
-
+use App\Http\Controllers\Frontend\PaymentController;
 
 Route::middleware(['auth'])->group(function () {
 
@@ -194,5 +194,28 @@ Route::post('/find-booking',
 Route::get('/guest-booking/{booking}',
     [BookingController::class, 'guestDetails'])
     ->name('booking.guest-details');
+
+
+
+
+Route::get(
+    '/payment/checkout/{booking}',
+    [PaymentController::class,'checkout']
+)
+->name('payment.checkout');
+
+
+Route::get(
+    '/payment/success/{booking}',
+    [PaymentController::class,'success']
+)
+->name('payment.success');
+
+
+Route::get(
+    '/payment/cancel/{booking}',
+    [PaymentController::class,'cancel']
+)
+->name('payment.cancel');
 
 require __DIR__.'/auth.php';

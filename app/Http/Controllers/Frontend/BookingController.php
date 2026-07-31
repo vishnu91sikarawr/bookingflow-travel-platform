@@ -184,15 +184,8 @@ public function processPayment(Request $request)
         );
 
         // Dummy payment success
-        $booking->update([
-            'payment_status' => 'paid',
-            'booking_status' => 'confirmed',
-        ]);
-
-        return redirect()->route(
-            'booking.confirmation',
-            $booking
-        );
+        return redirect()
+    ->route('payment.checkout', $booking);
 
     } catch (\Exception $e) {
 
@@ -207,8 +200,8 @@ public function processPayment(Request $request)
 {
 
     $booking->update([
-        'payment_status' => 'paid',
-        'status' => 'confirmed',
+        'payment_status' => 'pending',
+        'status' => 'pending',
     ]);
 
 
