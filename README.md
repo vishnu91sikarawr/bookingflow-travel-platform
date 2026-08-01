@@ -1,10 +1,22 @@
 <p align="center">
   <img src="docs/banners/bookingflow-banner.png" width="1000">
 </p>
+<p align="center">
 
+![Laravel CI](https://github.com/vishnu91sikarwar/bookingflow-travel-platform/actions/workflows/laravel.yml/badge.svg)
+
+</p>
 # 🚍 BookingFlow Travel Platform
 
-A modern travel booking SaaS platform built with Laravel 12 featuring Role-Based Access Control (RBAC), AdminLTE dashboard, customer booking workflow, Stripe payment integration, and a scalable architecture for travel agencies, bus operators, and booking businesses.
+A modern travel booking SaaS platform built with Laravel 12 featuring Role-Based Access Control (RBAC), AdminLTE dashboard, customer booking workflow, Stripe Checkout integration, and a scalable architecture for travel agencies, bus operators, and booking businesses.
+
+## 📌 Project Overview
+
+BookingFlow is a Laravel 12-based travel booking SaaS platform designed for bus operators, travel agencies, and booking businesses.
+
+The platform demonstrates a complete booking workflow including trip management, seat selection, customer booking, payment processing, role-based administration, and scalable Laravel application architecture.
+
+Built as a portfolio MVP to demonstrate production-level Laravel development practices.
 
 ---
 
@@ -31,7 +43,6 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Password Reset
 - Role-Based Login Redirect
 
-
 ### 👥 User Management
 
 - Create, Edit & Delete Users
@@ -39,12 +50,11 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Search & Pagination
 - Role Assignment
 - Multiple User Types:
-  - Super Admin
-  - Admin
-  - Operator
-  - Travel Agent
-  - Customer
-
+    - Super Admin
+    - Admin
+    - Operator
+    - Travel Agent
+    - Customer
 
 ### 🛡 Role Management
 
@@ -52,14 +62,12 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Assign Multiple Permissions
 - Protected System Roles
 
-
 ### 🔑 Permission Management
 
 - View Permissions
 - Search Permissions
 - Role Mapping
 - Permission-Based Access Control
-
 
 ### 🚌 Bus Operator Management
 
@@ -71,7 +79,6 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Validation with Form Requests
 - Service Layer Architecture
 
-
 ### 🚌 Bus Management
 
 - Complete Bus CRUD
@@ -79,13 +86,11 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Bus Details Management
 - Seat Configuration Support
 
-
 ### 🛣 Routes Management
 
 - Create & Manage Routes
 - Source & Destination Management
 - Route Assignment
-
 
 ### 🚍 Trips Management
 
@@ -93,7 +98,6 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Bus & Route Mapping
 - Departure Schedule Management
 - Fare Management
-
 
 ### 🎟 Customer Booking Workflow
 
@@ -106,7 +110,6 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Booking Confirmation
 - Booking Reference Generation
 
-
 ### 💳 Payment Integration
 
 - Stripe Checkout Integration
@@ -114,7 +117,6 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Payment Status Tracking
 - Secure Payment Processing
 - Booking Confirmation After Successful Payment
-
 
 ### 📋 Customer Features
 
@@ -124,7 +126,6 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Ticket Download
 - Guest Booking Lookup
 
-
 ### 🔒 Role-Based Access Control (RBAC)
 
 - Spatie Laravel Permission
@@ -133,14 +134,12 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 - Permission Based UI
 - Super Admin Access
 
-
 ### 🎨 Admin Dashboard
 
 - AdminLTE UI
 - Responsive Layout
 - Bootstrap 5
 - Management Dashboard
-
 
 # 🏗️ System Architecture
 
@@ -150,19 +149,15 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 
 ---
 
----
-
 # 📸 Screenshots
 
 ## 🎨 Admin Dashboard
 
 ![Dashboard](docs/screenshots/dashboard.png)
 
-
 ## 👥 User Management
 
 ![Users](docs/screenshots/users.png)
-
 
 ## 🛡 Role Management
 
@@ -170,11 +165,9 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 
 ![Role Edit](docs/screenshots/role-edit.png)
 
-
 ## 🔑 Permission Management
 
 ![Permissions](docs/screenshots/permissions.png)
-
 
 ## 🚌 Bus Operator Management
 
@@ -182,14 +175,11 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 
 ![Create Bus Operator](docs/screenshots/bus-operators-create.png)
 
-
 ## 🚌 Bus Management
 
 ![Bus Listing](docs/screenshots/buses_list.png)
 
 ![Add Edit Buses](docs/screenshots/add_edit_buses.png)
-
-
 
 ## 🛣 Routes Management
 
@@ -197,15 +187,11 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 
 ![Add Edit Route](docs/screenshots/add_edit_bus_route.png)
 
-
-
 ## 🚍 Trips Management
 
 ![Trip Listing](docs/screenshots/trips.png)
 
 ![Add Edit Trip](docs/screenshots/add_edit_trips.png)
-
-
 
 ## 🎟 Customer Booking Flow
 
@@ -219,20 +205,15 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 
 ![Booking Confirmation](docs/screenshots/booking_review.png)
 
-
-
 ## 💳 Payment Integration
 
 ![Stripe Checkout Page](docs/screenshots/payment_proccess.png)
 
 ![Payment Success Booking Confirmed](docs/screenshots/booking_confrimed.png)
 
-
-
-
 ## 📋 Customer Portal
 
-![Customer Login](docs/screenshots/payment_proccess.png)
+![Customer Login](docs/screenshots/login.png)
 
 ![My Bookings](docs/screenshots/my_booking.png)
 
@@ -242,30 +223,28 @@ BookingFlow is being developed as a production-quality Laravel SaaS application 
 
 ![Ticket Download](docs/screenshots/download_ticket.png)
 
-
-
 ---
 
 # 🚀 Tech Stack
 
-| Technology | Version |
-|------------|---------|
-| Laravel | 12 |
-| PHP | 8.2+ |
-| MySQL | 8.0 |
-| Blade | Latest |
-| Vue.js | 3 |
-| Bootstrap | 5 |
-| AdminLTE | 3 |
-| JavaScript (ES6+) | Latest |
-| jQuery | Latest |
-| Vite | Latest |
-| Laravel Breeze | Latest |
-| Spatie Laravel Permission | Latest |
-| Stripe Checkout | Latest |
-| Laravel Pint | Latest |
-| Composer | Latest |
-| Git & GitHub | Latest |
+| Technology                | Version |
+| ------------------------- | ------- |
+| Laravel                   | 12      |
+| PHP                       | 8.2+    |
+| MySQL                     | 8.0     |
+| Blade                     | Latest  |
+| Vue.js                    | 3       |
+| Bootstrap                 | 5       |
+| AdminLTE                  | 3       |
+| JavaScript (ES6+)         | Latest  |
+| jQuery                    | Latest  |
+| Vite                      | Latest  |
+| Laravel Breeze            | Latest  |
+| Spatie Laravel Permission | Latest  |
+| Stripe Checkout           | Latest  |
+| Laravel Pint              | Latest  |
+| Composer                  | Latest  |
+| Git & GitHub              | Latest  |
 
 ---
 
@@ -317,7 +296,7 @@ storage/
 
 ---
 
-# ⚙️ Installation & Setup
+# ⚙️ Docker Setup & Installation
 
 ## Prerequisites
 
@@ -327,7 +306,6 @@ Make sure you have installed:
 - Docker Compose
 - Git
 
-
 ## Clone Repository
 
 ```bash
@@ -335,7 +313,9 @@ git clone https://github.com/vishnu91sikarwar/bookingflow-travel-platform.git
 
 cd bookingflow-travel-platform
 ```
+
 ## Environment Setup
+
 ```bash
 cp .env.example .env
 ```
@@ -348,62 +328,113 @@ DB_USERNAME=bookingflow
 DB_PASSWORD=secret
 
 ## Build Docker Containers
+
 ```bash
 docker compose build
 ```
+
 ## Start Application
+
 ```bash
 docker compose up -d
 ```
+
 ## Install PHP Dependencies
+
 ```bash
 docker compose exec app composer install
 ```
+
 ## Install Frontend Dependencies
+
 ```bash
 docker compose exec app npm install
 ```
+
 ## Generate Application Key
+
 ```bash
 docker compose exec app php artisan key:generate
 ```
+
 ## Run Database Migration & Seeders
+
 ```bash
 docker compose exec app php artisan migrate --seed
 ```
+
 ## Build Frontend Assets
+
 ```bash
 
 docker compose exec app npm run build
 ```
+
 ## Access Application
 
 http://localhost:8000
 
 ## Useful Docker Commands
+
 Start containers:
+
 ```bash
 docker compose up -d
 ```
+
 Stop containers:
+
 ```bash
 docker compose down
 ```
+
 View container status:
+
 ```bash
 docker compose ps
 ```
+
 View logs:
+
 ```bash
 docker compose logs
 ```
+
 Run Laravel Artisan commands:
+
 ```bash
 docker compose exec app php artisan
 ```
 
+# 🔄 CI/CD Pipeline
 
-# 🛣 Roadmap
+BookingFlow uses GitHub Actions for automated quality checks.
+
+Every push to `staging` and `main` branches triggers:
+
+- PHP environment setup
+- Composer dependency installation
+- Node.js setup
+- Frontend asset compilation
+- Database migration
+- Laravel Pint code formatting
+- PHPUnit feature testing
+
+Workflow file: .github/workflows/laravel.yml
+
+Pipeline ensures every code change is validated before merging.
+
+# 🧪 Testing
+
+BookingFlow includes automated Laravel feature and unit tests.
+
+Run tests locally:
+
+```bash
+  docker compose exec app php artisan test
+```
+
+# 🛣 Future Improvements
 
 ## ✅ Version 1.0 — Core Platform
 
@@ -422,8 +453,7 @@ docker compose exec app php artisan
 - Seat Selection
 - Passenger Details
 - Booking Confirmation
-- Dummy Payment Gateway Integration
-
+- Stripe Checkout Integration
 
 ## 🚧 Version 1.1 — Booking Enhancement
 
@@ -434,7 +464,6 @@ docker compose exec app php artisan
 - Reports & Analytics
 - Activity Logs
 
-
 ## 🚧 Version 1.2 — SaaS Features
 
 - Multi Company Support
@@ -443,15 +472,14 @@ docker compose exec app php artisan
 - API Platform
 - Mobile App Integration
 
-
 ## 🚧 Version 2.0 — Enterprise Features
 
 - Advanced Reporting
 - Queue Based Processing
 - Real-time Notifications
 - Microservice Ready Architecture
-- Cloud Deployment
-- CI/CD Automation
+- AWS Deployment (EC2, RDS, S3, CloudFront)
+- Production CI/CD Deployment Pipeline
 
 ---
 
