@@ -384,7 +384,7 @@ return [
             'can' => 'trips.view',
         ],
 
-        ['header' => 'account_settings'],
+      /*   ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url' => 'admin/settings',
@@ -394,8 +394,47 @@ return [
             'text' => 'change_password',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
+        ], */
 
+        [
+    'header' => 'UPCOMING',
+],
+
+[
+    'text' => 'Booking Management',
+    'icon' => 'fas fa-ticket-alt',
+    'url'  => '#',
+],
+
+[
+    'text' => 'Reports',
+    'icon' => 'fas fa-chart-bar',
+    'url'  => '#',
+],
+
+[
+    'text' => 'Revenue Analytics',
+    'icon' => 'fas fa-chart-line',
+    'url'  => '#',
+],
+
+[
+    'text' => 'Coupons',
+    'icon' => 'fas fa-tags',
+    'url'  => '#',
+],
+
+[
+    'text' => 'Notifications',
+    'icon' => 'fas fa-bell',
+    'url'  => '#',
+],
+
+[
+    'text' => 'Settings',
+    'icon' => 'fas fa-cog',
+    'url'  => '#',
+],
     ],
 
     /*

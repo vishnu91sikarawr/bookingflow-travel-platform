@@ -1,7 +1,13 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+        <h2 class="text-2xl font-bold text-center mb-2">
+    Welcome Back
+</h2>
 
+<p class="text-center text-gray-500 mb-6">
+    Login to your BookingFlow account
+</p>
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
