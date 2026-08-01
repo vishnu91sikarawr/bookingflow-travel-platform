@@ -2,6 +2,7 @@
 
 namespace App\Services\Frontend;
 
+use App\Models\BusRoute;
 use App\Models\Trip;
 
 class TripService
@@ -37,22 +38,22 @@ class TripService
     }
 
     public function getCities(): array
-{
-    $cities = \App\Models\BusRoute::query()
-        ->select('source_city', 'destination_city')
-        ->get();
+    {
+        $cities = BusRoute::query()
+            ->select('source_city', 'destination_city')
+            ->get();
 
-    $list = collect();
+        $list = collect();
 
-    foreach ($cities as $route) {
-        $list->push($route->source_city);
-        $list->push($route->destination_city);
+        foreach ($cities as $route) {
+            $list->push($route->source_city);
+            $list->push($route->destination_city);
+        }
+
+        return $list
+            ->unique()
+            ->sort()
+            ->values()
+            ->toArray();
     }
-
-    return $list
-        ->unique()
-        ->sort()
-        ->values()
-        ->toArray();
-}
 }

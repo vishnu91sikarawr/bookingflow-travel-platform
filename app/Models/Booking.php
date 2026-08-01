@@ -6,28 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-
     protected $fillable = [
 
-    'booking_number',
+        'booking_number',
 
-    'trip_id',
+        'trip_id',
 
-    'user_id',
+        'user_id',
 
-    'contact_name',
+        'contact_name',
 
-    'contact_email',
+        'contact_email',
 
-    'contact_phone',
+        'contact_phone',
 
-    'total_amount',
+        'total_amount',
 
-    'booking_status',
+        'booking_status',
 
-    'payment_status',
+        'payment_status',
 
-    'payment_reference',
+        'payment_reference',
 
     ];
 
@@ -42,9 +41,7 @@ class Booking extends Model
     }
 
     public function user()
-{
-    return $this->belongsTo(User::class);
-}
-
-
+    {
+        return $this->belongsTo(User::class);
+    }
 }

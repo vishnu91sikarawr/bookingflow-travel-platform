@@ -1,0 +1,55 @@
+[33mcommit 9afe79d7d779251eec456490f4522b86c354b682[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Vishnu Sikarwar <monu91sikarwar@gmail.com>
+Date:   Sat Aug 1 10:46:36 2026 +0530
+
+    Polish README documentation and add Docker environment
+
+ .dockerignore                                      |  23 [32m++++++[m
+ README.md                                          | 382 [32m+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[m[31m-------------[m
+ app/Http/Controllers/Admin/DashboardController.php |  81 [32m+++++++++++++++++[m[31m--[m
+ app/Models/Booking.php                             |   5 [32m++[m
+ app/Models/BusRoute.php                            |   4 [32m+[m[31m-[m
+ bootstrap/cache/.gitignore                         |   0
+ config/adminlte.php                                |  43 [32m+++++++++[m[31m-[m
+ database/factories/BusRouteFactory.php             |   1 [32m+[m
+ docker-compose.yml                                 |  70 [32m++++++++++++++++[m
+ docker/nginx/default.conf                          |  46 [32m+++++++++++[m
+ docker/php/Dockerfile                              |  43 [32m++++++++++[m
+ docs/screenshots/add_edit_bus_route.png            | Bin [31m0[m -> [32m51625[m bytes
+ docs/screenshots/add_edit_buses.png                | Bin [31m0[m -> [32m51108[m bytes
+ docs/screenshots/add_edit_trips.png                | Bin [31m0[m -> [32m51757[m bytes
+ docs/screenshots/booked_details.png                | Bin [31m0[m -> [32m59117[m bytes
+ docs/screenshots/booking_confirmation.png          | Bin [31m0[m -> [32m49907[m bytes
+ docs/screenshots/booking_confrimed.png             | Bin [31m0[m -> [32m37698[m bytes
+ docs/screenshots/booking_review.png                | Bin [31m0[m -> [32m47318[m bytes
+ docs/screenshots/bus_route.png                     | Bin [31m0[m -> [32m58200[m bytes
+ docs/screenshots/buses_list.png                    | Bin [31m0[m -> [32m59045[m bytes
+ docs/screenshots/customer_feedback.png             | Bin [31m0[m -> [32m100274[m bytes
+ docs/screenshots/dashboard.png                     | Bin [31m73469[m -> [32m95636[m bytes
+ docs/screenshots/download_ticket.png               | Bin [31m0[m -> [32m61547[m bytes
+ docs/screenshots/explore_buses_route.png           | Bin [31m0[m -> [32m65781[m bytes
+ docs/screenshots/find_booking.png                  | Bin [31m0[m -> [32m29939[m bytes
+ docs/screenshots/login.png                         | Bin [31m0[m -> [32m28524[m bytes
+ docs/screenshots/manage_users.png                  | Bin [31m0[m -> [32m71400[m bytes
+ docs/screenshots/my_booking.png                    | Bin [31m0[m -> [32m33408[m bytes
+ docs/screenshots/passenger_details.png             | Bin [31m0[m -> [32m46428[m bytes
+ docs/screenshots/payment_proccess.png              | Bin [31m0[m -> [32m40582[m bytes
+ docs/screenshots/registration.png                  | Bin [31m0[m -> [32m22347[m bytes
+ docs/screenshots/searchBus.png                     | Bin [31m0[m -> [32m475819[m bytes
+ docs/screenshots/seat_selection.png                | Bin [31m0[m -> [32m52442[m bytes
+ docs/screenshots/trip_select_detail.png            | Bin [31m0[m -> [32m37080[m bytes
+ docs/screenshots/trips.png                         | Bin [31m0[m -> [32m66259[m bytes
+ resources/views/admin/dashboard.blade.php          | 416 [32m++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[m[31m------[m
+ resources/views/auth/login.blade.php               |   6 [32m++[m
+ resources/views/layouts/guest.blade.php            | 114 [32m++++++++++++++++++++[m[31m------[m
+ storage/app/.gitignore                             |   0
+ storage/app/private/.gitignore                     |   0
+ storage/app/public/.gitignore                      |   0
+ storage/framework/.gitignore                       |   0
+ storage/framework/cache/.gitignore                 |   0
+ storage/framework/cache/data/.gitignore            |   0
+ storage/framework/sessions/.gitignore              |   0
+ storage/framework/testing/.gitignore               |   0
+ storage/framework/views/.gitignore                 |   0
+ storage/logs/.gitignore                            |   0
+ 48 files changed, 1116 insertions(+), 118 deletions(-)

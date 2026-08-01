@@ -3,85 +3,70 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\Bus;
+use App\Models\BusOperator;
+use App\Models\BusRoute;
+use App\Models\Trip;
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-use App\Models\BusOperator;
-use App\Models\Bus;
-use App\Models\BusRoute;
-use App\Models\Trip;
-use App\Models\Booking;
-
 class DashboardController extends Controller
 {
     public function index()
-{
+    {
 
+        return view('admin.dashboard', [
 
+            // User & RBAC
+            'totalUsers' => User::count(),
 
-    return view('admin.dashboard', [
+            'totalCustomers' => User::role('Customer')->count(),
 
-        // User & RBAC
-        'totalUsers' => User::count(),
+            'totalRoles' => Role::count(),
 
-        'totalCustomers' =>
-            User::role('Customer')->count(),
+            'totalPermissions' => Permission::count(),
 
-        'totalRoles' =>
-            Role::count(),
+            // Travel Management
+            'totalOperators' => BusOperator::count(),
 
-        'totalPermissions' =>
-            Permission::count(),
+            'totalBuses' => Bus::count(),
 
+            'totalRoutes' => BusRoute::count(),
 
-        // Travel Management
-        'totalOperators' =>
-            BusOperator::count(),
+            'totalTrips' => Trip::count(),
 
-        'totalBuses' =>
-            Bus::count(),
+            // Booking Management
+            'totalBookings' => Booking::count(),
 
-        'totalRoutes' =>
-            BusRoute::count(),
+            'totalRevenue' => Booking::where('payment_status', 'paid')
+                ->sum('total_amount'),
 
-        'totalTrips' =>
-            Trip::count(),
+            'latestBookings' => Booking::with([
+                'user',
+                'trip.busRoute',
+            ])
+                ->latest()
+                ->take(5)
+                ->get(),
 
+            // Demo Revenue Chart
+            'revenueChart' => [
+                12000,
+                18000,
+                15000,
+                24000,
+                30000,
+                42000,
+                38000,
+                46000,
+                51000,
+                48000,
+                62000,
+                70000,
+            ],
 
-
-        // Booking Management
-        'totalBookings' =>
-        Booking::count(),
-
-        'totalRevenue' =>
-        Booking::where('payment_status', 'paid')
-        ->sum('total_amount'),
-
-        'latestBookings' => Booking::with([
-        'user',
-        'trip.busRoute',
-        ])
-        ->latest()
-        ->take(5)
-        ->get(),
-
-        // Demo Revenue Chart
-        'revenueChart' => [
-            12000,
-            18000,
-            15000,
-            24000,
-            30000,
-            42000,
-            38000,
-            46000,
-            51000,
-            48000,
-            62000,
-            70000,
-        ]
-
-    ]);
-}
+        ]);
+    }
 }

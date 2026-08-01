@@ -4,12 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
-use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
-
     public function checkout(Booking $booking)
     {
 
@@ -17,11 +16,10 @@ class PaymentController extends Controller
             config('services.stripe.secret')
         );
 
-
         $session = Session::create([
 
             'payment_method_types' => [
-                'card'
+                'card',
             ],
 
             'line_items' => [[
@@ -36,8 +34,7 @@ class PaymentController extends Controller
 
                     ],
 
-                    'unit_amount' =>
-                        $booking->total_amount * 100,
+                    'unit_amount' => $booking->total_amount * 100,
 
                 ],
 
@@ -45,20 +42,13 @@ class PaymentController extends Controller
 
             ]],
 
-
             'mode' => 'payment',
 
+            'success_url' => route('payment.success', $booking),
 
-            'success_url' =>
-                route('payment.success',$booking),
-
-
-            'cancel_url' =>
-                route('payment.cancel',$booking),
+            'cancel_url' => route('payment.cancel', $booking),
 
         ]);
-
-
 
         return redirect(
             $session->url
@@ -66,19 +56,16 @@ class PaymentController extends Controller
 
     }
 
-
-
     public function success(Booking $booking)
     {
 
         $booking->update([
 
-            'payment_status'=>'paid',
+            'payment_status' => 'paid',
 
-            'booking_status'=>'confirmed',
+            'booking_status' => 'confirmed',
 
         ]);
-
 
         return redirect()
             ->route(
@@ -87,8 +74,6 @@ class PaymentController extends Controller
             );
 
     }
-
-
 
     public function cancel(Booking $booking)
     {
@@ -104,5 +89,4 @@ class PaymentController extends Controller
             );
 
     }
-
 }

@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\BusOperator;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BusRouteFactory extends Factory

@@ -11,42 +11,42 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('bookings', function (Blueprint $table) {
-    $table->id();
+        Schema::create('bookings', function (Blueprint $table) {
+            $table->id();
 
-    $table->string('booking_number')->unique();
+            $table->string('booking_number')->unique();
 
-    $table->foreignId('trip_id')
-          ->constrained()
-          ->cascadeOnDelete();
+            $table->foreignId('trip_id')
+                ->constrained()
+                ->cascadeOnDelete();
 
-    $table->foreignId('user_id')
-          ->nullable()
-          ->constrained()
-          ->nullOnDelete();
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
 
-    $table->string('contact_name');
-    $table->string('contact_email')->nullable();
-    $table->string('contact_phone');
+            $table->string('contact_name');
+            $table->string('contact_email')->nullable();
+            $table->string('contact_phone');
 
-    $table->decimal('total_amount', 10, 2);
+            $table->decimal('total_amount', 10, 2);
 
-    $table->enum('booking_status', [
-        'pending',
-        'confirmed',
-        'cancelled'
-    ])->default('pending');
+            $table->enum('booking_status', [
+                'pending',
+                'confirmed',
+                'cancelled',
+            ])->default('pending');
 
-    $table->enum('payment_status', [
-        'pending',
-        'paid',
-        'failed'
-    ])->default('pending');
+            $table->enum('payment_status', [
+                'pending',
+                'paid',
+                'failed',
+            ])->default('pending');
 
-    $table->string('payment_reference')->nullable();
+            $table->string('payment_reference')->nullable();
 
-    $table->timestamps();
-});
+            $table->timestamps();
+        });
     }
 
     /**

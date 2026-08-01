@@ -13,28 +13,28 @@ return new class extends Migration
     {
         Schema::create('booking_passengers', function (Blueprint $table) {
 
-    $table->id();
+            $table->id();
 
-    $table->foreignId('booking_id')
-          ->constrained()
-          ->cascadeOnDelete();
+            $table->foreignId('booking_id')
+                ->constrained()
+                ->cascadeOnDelete();
 
-    $table->string('seat_number');
+            $table->string('seat_number');
 
-    $table->string('passenger_name');
+            $table->string('passenger_name');
 
-    $table->unsignedTinyInteger('age');
+            $table->unsignedTinyInteger('age');
 
-    $table->enum('gender', [
-        'male',
-        'female',
-        'other'
-    ]);
+            $table->enum('gender', [
+                'male',
+                'female',
+                'other',
+            ]);
 
-    $table->decimal('fare', 10, 2);
+            $table->decimal('fare', 10, 2);
 
-    $table->timestamps();
-});
+            $table->timestamps();
+        });
     }
 
     /**
